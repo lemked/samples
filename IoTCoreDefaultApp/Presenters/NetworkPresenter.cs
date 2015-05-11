@@ -88,9 +88,16 @@ namespace IoTCoreDefaultApp
                 return false;
             }
 
-            var adapters = await WiFiAdapter.FindAllAdaptersAsync();
+            try
+            {
+                var adapters = await WiFiAdapter.FindAllAdaptersAsync();
 
-            return adapters.Count > 0;
+                return adapters.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         private async Task<bool> UpdateInfo()
